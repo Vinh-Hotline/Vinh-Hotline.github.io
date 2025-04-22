@@ -81,9 +81,12 @@
             margin: 20px 0;
         }
 
-        /* Thêm khoảng cách giữa icon và chữ */
         .skills-container li i {
             margin-right: 10px;
+        }
+
+        .skills-container li {
+            margin-bottom: 10px; /* Thêm khoảng cách giữa các mục */
         }
 
         .contact-info p {
@@ -91,12 +94,16 @@
             line-height: 1.8;
         }
 
+        ul {
+            list-style-type: none; /* Xóa bullet points */
+            padding-left: 0; /* Xóa padding mặc định */
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        /* Điều chỉnh cho các kích thước màn hình */
         @media (max-width: 992px) {
             .container { max-width: 90%; padding: 25px; }
             .profile-img { width: 180px; height: 180px; }
@@ -114,16 +121,18 @@
             h1 { font-size: 1.5rem; }
             h2 { font-size: 1.3rem; }
             .social-links a { font-size: 1.8em; }
+            .skills-container li i { margin-right: 8px; }
+            .contact-info p { font-size: 0.9rem; }
+            .contact-info i { font-size: 1.2rem; }
         }
 
         @media (max-width: 400px) {
             .container { padding: 15px; }
             h1 { font-size: 1.3rem; }
             .social-links a { font-size: 1.5em; }
-            /* Giảm khoảng cách trên màn hình rất nhỏ nếu cần */
-            .skills-container li i {
-                margin-right: 8px;
-            }
+            .skills-container li i { margin-right: 5px; }
+            .contact-info p { font-size: 0.85rem; }
+            .contact-info i { font-size: 1rem; }
         }
 
         .running-pig {
