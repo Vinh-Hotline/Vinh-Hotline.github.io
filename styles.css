@@ -1,0 +1,79 @@
+:root {
+    --ghibli-green: #8da07d;
+    --ghibli-blue: #a3c6d9;
+    --ghibli-cream: #f5f1e3;
+    --ghibli-orange: #e6b89c;
+    --ghibli-gold: #ffd700;
+    --ghibli-cloud: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(45deg, var(--ghibli-cream), var(--ghibli-blue));
+    color: #2c3e50;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid var(--ghibli-green);
+    margin: 0 auto 20px;
+    display: block;
+    object-fit: cover;
+    animation: float 4s ease-in-out infinite;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.social-links {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.social-links a {
+    font-size: 2em;
+    margin: 0 10px;
+    color: var(--ghibli-green);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 1.94);
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a:hover {
+    transform: scale(1.4) rotate(360deg);
+    color: var(--ghibli-orange);
+}
+
+/* Thêm các Media Queries cho responsive */
+@media only screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .profile-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .social-links a {
+        font-size: 1.5em;
+    }
+}
