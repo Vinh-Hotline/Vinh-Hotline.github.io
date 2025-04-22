@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Vinh Pig - Kĩ Thuật Chăn nuôi Heo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --ghibli-green: #8da07d;
+            --ghibli-blue: #a3c6d9;
+            --ghibli-cream: #f5f1e3;
+            --ghibli-orange: #e6b89c;
+            --ghibli-gold: #ffd700;
+            --ghibli-cloud: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(45deg, var(--ghibli-cream), var(--ghibli-blue));
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--ghibli-green);
+            margin: 0 auto 20px;
+            display: block;
+            object-fit: cover;
+            animation: float 4s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            font-size: 2em;
+            margin: 0 10px;
+            color: var(--ghibli-green);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 1.94);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .leaf {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 15Q40 30 55 50Q30 65 50 85Q70 65 45 50Q60 30 50 15" fill="%238da07d"/></svg>');
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .running-pig {
+            position: fixed;
+            bottom: 20px;
+            right: -100px;
+            font-size: 40px;
+            animation: run 15s linear infinite;
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .cloud {
+            position: fixed;
+            background: var(--ghibli-cloud);
+            border-radius: 20px;
+            animation: drift 60s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @media (max-width: 992px) {
+            .container { max-width: 90%; padding: 25px; }
+            .profile-img { width: 180px; height: 180px; }
+            h1 { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 15px; }
+            .container { padding: 20px; }
+            .skills-container { grid-template-columns: 1fr; }
+            .running-pig { font-size: 30px; }
+        }
+
+        @media (max-width: 576px) {
+            .profile-img { width: 150px; height: 150px; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.3rem; }
+            .social-links a { font-size: 1.8em; }
+        }
+
+        @media (max-width: 400px) {
+            .container { padding: 15px; }
+            h1 { font-size: 1.3rem; }
+            .social-links a { font-size: 1.5em; }
+        }
+
+        @media (hover: none) {
+            .social-links a:hover { transform: none !important; }
+            .profile-img:hover { animation: float; transform: none; }
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .contact-info p { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="running-pig">🐷</div>
+
+    <div class="container">
+        <img src="https://github.com/Vinh-Hotline/Vinh-Hotline.github.io/raw/main/images/Imagine_10114825312985827" alt="Vinh Pig - Chuyên gia chăn nuôi heo" class="profile-img">
+        <h1>🐷 Vinh Pig (Đoàn Vinh)</h1>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/vinhdoan.dlk" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://github.com/Vinh-Hotline" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://open.spotify.com/user/31cqtlxglww2gkwsfhhsks27mn3e" target="_blank" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+            <a href="https://www.reddit.com/u/PigConnect" target="_blank" aria-label="Reddit"><i class="fab fa-reddit"></i></a>
+            <a href="http://www.x.com/babodiad" target="_blank" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a>
+        </div>
+
+        <h2>📌 Giới Thiệu</h2>
+        <p>Kỹ thuật chăn nuôi Heo giống với niềm đam mê & không ngừng phát triển! Nghi ngờ ư? Sao không thử?</p>
+
+        <div class="skills-container">
+            <div>
+                <h3>🛠 Kỹ Năng Chuyên Môn</h3>
+                <ul>
+                    <li>Microsoft Office</li>
+                    <li>Chăn nuôi & Thú y</li>
+                    <li>Phân tích dữ liệu</li>
+                    <li>Lập kế hoạch & triển khai</li>
+                    <li>Báo cáo chuyên sâu</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>🤖 Công Nghệ AI</h3>
+                <ul>
+                    <li>Deepseek</li>
+                    <li>ChatGPT</li>
+                    <li>Gemini</li>
+                    <li>Grok</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h2>📞 Liên Hệ Hợp Tác</h2>
+            <p>
+                <i class="fas fa-phone"></i> Sms: +(84) 08 678 246 06<br>
+                <i class="fab fa-whatsapp"></i> WhatsApp: +(84) 0839713467<br>
+                <i class="fas fa-comment-dots"></i> Zalo: 0867824606
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Animation System
+        function createLeaves() {
+            const isMobile = window.innerWidth < 768;
+            for (let i = 0; i < (isMobile ? 8 : 15); i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDuration = Math.random() * 3 + 5 + 's';
+                leaf.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(leaf);
+            }
+        }
+
+        function createClouds() {
+            const cloudShapes = [
+                {w: 120, h: 40, r: '30px'},
+                {w: 80, h: 30, r: '20px'},
+                {w: 150, h: 50, r: '40px'}
+            ];
+            
+            for (let i = 0; i < 5; i++) {
+                const cloud = document.createElement('div');
+                const style = cloudShapes[Math.floor(Math.random() * cloudShapes.length)];
+                Object.assign(cloud.style, {
+                    width: style.w + 'px',
+                    height: style.h + 'px',
+                    borderRadius: style.r,
+                    top: Math.random() * 80 + '%',
+                    animationDelay: Math.random() * 20 + 's'
+                });
+                cloud.className = 'cloud';
+                document.body.appendChild(cloud);
+            }
+        }
+
+        // Interactive Effects
+        document.querySelectorAll('.social-links a').forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                const particles = document.createElement('div');
+                particles.style.position = 'fixed';
+                particles.style.left = e.clientX + 'px';
+                particles.style.top = e.clientY + 'px';
+                particles.innerHTML = '✨✨✨';
+                document.body.appendChild(particles);
+                setTimeout(() => particles.remove(), 1000);
+            });
+        });
+
+        // Initial Setup
+        createLeaves();
+        createClouds();
+        
+        // Responsive Handler
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.leaf').forEach(leaf => leaf.remove());
+            createLeaves();
+        });
+
+        // Mobile Detection
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            document.documentElement.classList.add('mobile');
+        }
+    </script>
+</body>
+</html>
