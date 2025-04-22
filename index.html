@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="Vinh Pig - Chuyên gia chăn nuôi heo, chia sẻ kiến thức và kinh nghiệm trong lĩnh vực chăn nuôi">
+    <meta name="description" content="Vinh Pig-CV">
     <title>Vinh Pig</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -86,10 +86,10 @@
         .running-pig {
             position: fixed;
             bottom: 20px;
-            left: -100px; /* Changed from right to left */
+            left: -100px;
             font-size: 40px;
-            animation: run 7s linear infinite; /* Reduced time from 15s to 10s */
-            opacity: 1; /* Changed from 0.7 to 1 */
+            animation: run 7s linear infinite;
+            opacity: 1;
         }
 
         @keyframes run {
@@ -139,6 +139,30 @@
         .contact-info p {
             margin: 10px 0;
             line-height: 1.8;
+        }
+
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--ghibli-gold);
+        }
+
+        .current-time {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+
+        #current-time-display {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--ghibli-green);
         }
 
         ul {
@@ -228,7 +252,7 @@
         </div>
 
         <h2>📌 Về tôi</h2>
-        <p>Xin chào! tôi là Vinh – một người luôn nghiêm túc với nghề và không ngừng học hỏi để nâng cao kỹ năng. Với niềm đam mê và sự tận tâm trong công việc.Hai con thằng lằn con đùa nhau đua cắn nhau đứt đuôi, cha thằn lằn buồn hiu gọi chúng đến mắng đánh cho... Đuôi anh mày thật to sao mày cắn đứt đuôi anh mày🥵</p>
+        <p>Xin chào! tôi là Vinh – một người luôn nghiêm túc với nghề và không ngừng học hỏi để nâng cao kỹ năng. Với niềm đam mê và sự tận tâm trong công việc, tôi tin rằng chúng ta sẽ cùng nhau tạo ra những giá trị mới, thay đổi mới...</p>
 
         <div class="skills-container">
             <div>
@@ -255,9 +279,14 @@
         <div class="contact-info">
             <h2>📞 Liên hệ</h2>
             <p>
-                <i class="fas fa-comment-dots"></i> Zalo: 08 678 246 06<br>
-                <i class="fas fa-map-marker-alt"></i> Địa chỉ: Ea Tóh, Krông Năng, Đắk Lắk, Việt Nam
+                <i class="fas fa-phone"></i> <a href="tel:+84867824606">+84 08 678 246 06</a><br>
+                <i class="fas fa-map-marker-alt"></i> <a href="https://maps.google.com/?q=28RM%2BJ4X+Kr%C3%B4ng+N%C4%83ng%2C+%C4%90%E1%BA%AFk+L%E1%BA%AFk" target="_blank">28RM+J4X Krông Năng, Đắk Lắk</a>
             </p>
+        </div>
+
+        <div class="current-time">
+            <h2>⏰ Thời gian hiện tại</h2>
+            <p id="current-time-display"></p>
         </div>
     </div>
 
@@ -283,6 +312,29 @@
             document.body.dataset.theme = savedTheme;
             updateThemeIcon(savedTheme === 'dark');
         }
+
+        // Time Display
+        function updateTime() {
+            const timeDisplay = document.getElementById('current-time-display');
+            const options = {
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            };
+            
+            const now = new Date();
+            timeDisplay.textContent = now.toLocaleString('vi-VN', options) + 
+                '\nMúi giờ: ' + Intl.DateTimeFormat().resolvedOptions().timeZone;
+        }
+
+        // Update time every second
+        updateTime();
+        setInterval(updateTime, 1000);
     </script>
 </body>
 </html>
