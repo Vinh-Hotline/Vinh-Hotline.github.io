@@ -160,48 +160,6 @@
             margin-bottom: 10px;
         }
 
-        /* Contact Form Styles */
-        .contact-form {
-            margin-top: 20px;
-            background: var(--container-bg);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--text-color);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid var(--ghibli-green);
-            border-radius: 4px;
-            background: var(--container-bg);
-            color: var(--text-color);
-        }
-
-        .contact-form button {
-            background: var(--ghibli-green);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .contact-form button:hover {
-            background: var(--ghibli-blue);
-        }
-
         .contact-info p {
             margin: 10px 0;
             line-height: 1.8;
@@ -249,7 +207,6 @@
             h1 { font-size: 1.5rem; }
             h2 { font-size: 1.3rem; }
             .social-links a { font-size: 1.8em; }
-            .contact-form { padding: 15px; }
         }
 
         @media (max-width: 400px) {
@@ -311,7 +268,7 @@
         </div>
 
         <h2>📌 Về tôi</h2>
-        <p>Xin chào! tôi là Vinh – một người luôn nghiêm túc với nghề và không ngừng học hỏi để nâng cao kỹ năng. Với niềm đam mê và sự tận tâm trong lĩnh vực chăn nuôi heo, tôi luôn mong muốn đóng góp những kiến thức và kinh nghiệm của mình để phát triển ngành chăn nuôi Việt Nam.</p>
+        <p>Xin chào! tôi là Vinh – một người luôn nghiêm túc với nghề và không ngừng học hỏi để nâng cao kỹ năng. Với niềm đam mê và sự tận tâm trong l[...]</p>
 
         <div class="skills-container">
             <div>
@@ -341,22 +298,6 @@
                 <i class="fas fa-comment-dots"></i> Zalo: 08 678 246 06<br>
                 <i class="fas fa-map-marker-alt"></i> Địa chỉ: Ea Tóh, Krông Năng, Đắk Lắk, Việt Nam
             </p>
-
-            <form id="contact-form" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Họ tên:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Tin nhắn:</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                </div>
-                <button type="submit">Gửi tin nhắn</button>
-            </form>
         </div>
     </div>
 
@@ -394,14 +335,6 @@
                 document.body.appendChild(particles);
                 setTimeout(() => particles.remove(), 1000);
             });
-        });
-
-        // Contact form handling
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your form handling logic here
-            alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.');
-            this.reset();
         });
     </script>
 </body>
