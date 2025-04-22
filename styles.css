@@ -39,3 +39,16 @@ body {
     text-align: left;
     font-size: 1em;
 }
+.profile-img {
+    width: 200px; /* Đặt kích thước cố định */
+    height: 200px;
+    max-width: 100%; /* Đảm bảo không vượt quá kích thước container */
+    border-radius: 50%; /* Tạo hình tròn */
+    border: 5px solid var(--ghibli-green);
+    margin: 0 auto 20px; /* Căn giữa và thêm khoảng cách dưới */
+    display: block;
+    object-fit: cover; /* Duy trì tỷ lệ hình ảnh */
+    animation: float 4s ease-in-out infinite;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
