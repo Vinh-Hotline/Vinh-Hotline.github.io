@@ -3,14 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Vinh Pig - Chuyên gia chăn nuôi heo, chia sẻ kiến thức và kinh nghiệm trong lĩnh vực chăn nuôi">
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; 
+                   style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; 
+                   img-src 'self' github.com raw.githubusercontent.com; 
+                   font-src cdnjs.cloudflare.com;
+                   connect-src 'none';">
     <title>Vinh Pig</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <style>
         :root {
+            /* Light mode colors */
             --ghibli-green: #8da07d;
             --ghibli-blue: #a3c6d9;
             --ghibli-cream: #f5f1e3;
             --ghibli-orange: #e6b89c;
+            --ghibli-gold: #ffd700;
+            --background-color: linear-gradient(45deg, var(--ghibli-cream), var(--ghibli-blue));
+            --text-color: #2c3e50;
+            --container-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] {
+            --background-color: linear-gradient(45deg, #2c3e50, #3498db);
+            --text-color: #ecf0f1;
+            --container-bg: rgba(44, 62, 80, 0.9);
+            --ghibli-green: #a1c4a1;
             --ghibli-gold: #ffd700;
         }
 
@@ -19,15 +40,15 @@
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background: linear-gradient(45deg, var(--ghibli-cream), var(--ghibli-blue));
-            color: #2c3e50;
+            background: var(--background-color);
+            color: var(--text-color);
             overflow-x: hidden;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--container-bg);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -35,19 +56,69 @@
             position: relative;
         }
 
-        .profile-img {
+        /* Theme Toggle Button */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--container-bg);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Profile Image with Loading */
+        .profile-img-container {
+            position: relative;
             width: 200px;
             height: 200px;
+            margin: 0 auto 20px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             border: 5px solid var(--ghibli-green);
-            margin: 0 auto 20px;
             display: block;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .profile-img.loaded {
+            opacity: 1;
         }
 
         .profile-img:hover {
             transform: scale(1.05);
+        }
+
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--ghibli-cream);
+            border-top: 4px solid var(--ghibli-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         h1 {
@@ -86,7 +157,49 @@
         }
 
         .skills-container li {
-            margin-bottom: 10px; /* Thêm khoảng cách giữa các mục */
+            margin-bottom: 10px;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            margin-top: 20px;
+            background: var(--container-bg);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--ghibli-green);
+            border-radius: 4px;
+            background: var(--container-bg);
+            color: var(--text-color);
+        }
+
+        .contact-form button {
+            background: var(--ghibli-green);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: var(--ghibli-blue);
         }
 
         .contact-info p {
@@ -95,44 +208,13 @@
         }
 
         ul {
-            list-style-type: none; /* Xóa bullet points */
-            padding-left: 0; /* Xóa padding mặc định */
+            list-style-type: none;
+            padding-left: 0;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        @media (max-width: 992px) {
-            .container { max-width: 90%; padding: 25px; }
-            .profile-img { width: 180px; height: 180px; }
-            h1 { font-size: 1.8rem; }
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 15px; }
-            .container { padding: 20px; }
-            .skills-container { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 576px) {
-            .profile-img { width: 150px; height: 150px; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.3rem; }
-            .social-links a { font-size: 1.8em; }
-            .skills-container li i { margin-right: 8px; }
-            .contact-info p { font-size: 0.9rem; }
-            .contact-info i { font-size: 1.2rem; }
-        }
-
-        @media (max-width: 400px) {
-            .container { padding: 15px; }
-            h1 { font-size: 1.3rem; }
-            .social-links a { font-size: 1.5em; }
-            .skills-container li i { margin-right: 5px; }
-            .contact-info p { font-size: 0.85rem; }
-            .contact-info i { font-size: 1rem; }
         }
 
         .running-pig {
@@ -148,25 +230,88 @@
             from { transform: translateX(0); }
             to { transform: translateX(calc(100vw + 200px)); }
         }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container { max-width: 90%; padding: 25px; }
+            .profile-img-container { width: 180px; height: 180px; }
+            h1 { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 15px; }
+            .container { padding: 20px; }
+            .skills-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 576px) {
+            .profile-img-container { width: 150px; height: 150px; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.3rem; }
+            .social-links a { font-size: 1.8em; }
+            .contact-form { padding: 15px; }
+        }
+
+        @media (max-width: 400px) {
+            .container { padding: 15px; }
+            h1 { font-size: 1.3rem; }
+            .social-links a { font-size: 1.5em; }
+        }
     </style>
 </head>
 <body>
+    <button id="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="running-pig">🐷</div>
 
     <div class="container">
-        <img src="https://github.com/Vinh-Hotline/Vinh-Hotline.github.io/raw/main/images/Imagine_10114825312985827" alt="Vinh Pig - Chuyên gia chăn nuôi heo" class="profile-img">
+        <div class="profile-img-container">
+            <div class="loading-spinner"></div>
+            <img src="https://github.com/Vinh-Hotline/Vinh-Hotline.github.io/raw/main/images/Imagine_10114825312985827" 
+                 alt="Vinh Pig - Chuyên gia chăn nuôi heo" 
+                 class="profile-img"
+                 onload="this.classList.add('loaded')">
+        </div>
+
         <h1>🐷 Vinh Pig (Đoàn Vinh)</h1>
         
         <div class="social-links">
-            <a href="https://www.facebook.com/share/15DfdrSPmw/?mibextid=qi2Omg" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://github.com/Vinh-Hotline" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://open.spotify.com/user/31cqtlxglww2gkwsfhhsks27mn3e" target="_blank" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
-            <a href="https://www.reddit.com/u/PigConnect" target="_blank" aria-label="Reddit"><i class="fab fa-reddit"></i></a>
-            <a href="http://www.x.com/babodiad" target="_blank" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/share/15DfdrSPmw/?mibextid=qi2Omg" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://github.com/Vinh-Hotline" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://open.spotify.com/user/31cqtlxglww2gkwsfhhsks27mn3e" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               aria-label="Spotify">
+                <i class="fab fa-spotify"></i>
+            </a>
+            <a href="https://www.reddit.com/u/PigConnect" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               aria-label="Reddit">
+                <i class="fab fa-reddit"></i>
+            </a>
+            <a href="http://www.x.com/babodiad" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               aria-label="X (Twitter)">
+                <i class="fab fa-twitter"></i>
+            </a>
         </div>
 
         <h2>📌 Về tôi</h2>
-        <p>Xin chào! tôi là Vinh – một người luôn nghiêm túc với nghề và không ngừng học hỏi để nâng cao kỹ năng. Sau khi hoàn thành chương trình đào tạo chuyên ngành thú y, tôi tiếp tục theo đuổi các khóa học chuyên sâu để củng cố tay nghề và cập nhật kiến thức mới. Với tinh thần trách nhiệm, sự cẩn thận và lòng yêu nghề, tôi tin rằng mình có thể đóng góp tích cực cho công việc và không ngừng phát triển trong môi trường chuyên nghiệp. Mọi người vẫn hay gọi tôi một cách thân mật là “Vinh thịt heo” – một biệt danh vui thể hiện sự gắn bó và niềm đam mê thật sự với nghề.</p>
+        <p>Xin chào! tôi là Vinh – một người luôn nghiêm túc với nghề và không ngừng học hỏi để nâng cao kỹ năng. Với niềm đam mê và sự tận tâm trong lĩnh vực chăn nuôi heo, tôi luôn mong muốn đóng góp những kiến thức và kinh nghiệm của mình để phát triển ngành chăn nuôi Việt Nam.</p>
 
         <div class="skills-container">
             <div>
@@ -196,10 +341,49 @@
                 <i class="fas fa-comment-dots"></i> Zalo: 08 678 246 06<br>
                 <i class="fas fa-map-marker-alt"></i> Địa chỉ: Ea Tóh, Krông Năng, Đắk Lắk, Việt Nam
             </p>
+
+            <form id="contact-form" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Họ tên:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tin nhắn:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit">Gửi tin nhắn</button>
+            </form>
         </div>
     </div>
 
     <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const moonIcon = themeToggle.querySelector('i');
+
+        function updateThemeIcon(isDark) {
+            moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.dataset.theme === 'dark';
+            document.body.dataset.theme = isDark ? '' : 'dark';
+            localStorage.setItem('theme', document.body.dataset.theme);
+            updateThemeIcon(!isDark);
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.dataset.theme = savedTheme;
+            updateThemeIcon(savedTheme === 'dark');
+        }
+
+        // Social links sparkle effect
         document.querySelectorAll('.social-links a').forEach(icon => {
             icon.addEventListener('click', (e) => {
                 const particles = document.createElement('div');
@@ -210,6 +394,14 @@
                 document.body.appendChild(particles);
                 setTimeout(() => particles.remove(), 1000);
             });
+        });
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your form handling logic here
+            alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.');
+            this.reset();
         });
     </script>
 </body>
