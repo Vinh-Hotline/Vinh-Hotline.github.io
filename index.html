@@ -12,7 +12,6 @@
             --ghibli-cream: #f5f1e3;
             --ghibli-orange: #e6b89c;
             --ghibli-gold: #ffd700;
-            --ghibli-cloud: #f8f9fa;
         }
 
         body {
@@ -32,9 +31,8 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s ease-out;
+            animation: fadeIn 0.8s ease-out;
             position: relative;
-            z-index: 1;
         }
 
         .profile-img {
@@ -45,9 +43,17 @@
             margin: 0 auto 20px;
             display: block;
             object-fit: cover;
-            animation: float 4s ease-in-out infinite;
-            cursor: pointer;
             transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2rem;
         }
 
         .social-links {
@@ -59,61 +65,30 @@
             font-size: 2em;
             margin: 0 10px;
             color: var(--ghibli-green);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 1.94);
+            transition: transform 0.3s ease;
             display: inline-block;
-            position: relative;
-            overflow: hidden;
         }
 
-        .social-links a::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: var(--ghibli-gold);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .contact-info p {
+            margin: 10px 0;
+            line-height: 1.8;
         }
 
-        .leaf {
-            position: fixed;
-            width: 30px;
-            height: 30px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 15Q40 30 55 50Q30 65 50 85Q70 65 45 50Q60 30 50 15" fill="%238da07d"/></svg>');
-            animation: fall linear infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .running-pig {
-            position: fixed;
-            bottom: 20px;
-            right: -100px;
-            font-size: 40px;
-            animation: run 15s linear infinite;
-            opacity: 0.7;
-            z-index: -1;
-        }
-
-        .cloud {
-            position: fixed;
-            background: var(--ghibli-cloud);
-            border-radius: 20px;
-            animation: drift 60s linear infinite;
-            opacity: 0.3;
-            z-index: -1;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @media (max-width: 992px) {
@@ -126,7 +101,6 @@
             body { padding: 15px; }
             .container { padding: 20px; }
             .skills-container { grid-template-columns: 1fr; }
-            .running-pig { font-size: 30px; }
         }
 
         @media (max-width: 576px) {
@@ -142,19 +116,19 @@
             .social-links a { font-size: 1.5em; }
         }
 
-        @media (hover: none) {
-            .social-links a:hover { transform: none !important; }
-            .profile-img:hover { animation: float; transform: none; }
+        .running-pig {
+            position: fixed;
+            bottom: 20px;
+            right: -100px;
+            font-size: 40px;
+            animation: run 15s linear infinite;
+            opacity: 0.7;
         }
 
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+        @keyframes run {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 200px)); }
         }
-
-        .contact-info p { margin: 10px 0; }
     </style>
 </head>
 <body>
@@ -201,49 +175,13 @@
         <div class="contact-info">
             <h2>📞 Liên Hệ</h2>
             <p>
-                <i class="fab fa-whatsapp"></i> WhatsApp: +(84) 0839713467<br>
-                <i class="fas fa-comment-dots"></i> Zalo: 0867824606
+                <i class="fas fa-comment-dots"></i> Zalo: 0867824606<br>
+                <i class="fas fa-map-marker-alt"></i> Địa chỉ: Ea Tóh, Krông Năng, Đắk Lắk, Việt Nam
             </p>
         </div>
     </div>
 
     <script>
-        // Animation System
-        function createLeaves() {
-            const isMobile = window.innerWidth < 768;
-            for (let i = 0; i < (isMobile ? 8 : 15); i++) {
-                const leaf = document.createElement('div');
-                leaf.className = 'leaf';
-                leaf.style.left = Math.random() * 100 + 'vw';
-                leaf.style.animationDuration = Math.random() * 3 + 5 + 's';
-                leaf.style.animationDelay = Math.random() * 5 + 's';
-                document.body.appendChild(leaf);
-            }
-        }
-
-        function createClouds() {
-            const cloudShapes = [
-                {w: 120, h: 40, r: '30px'},
-                {w: 80, h: 30, r: '20px'},
-                {w: 150, h: 50, r: '40px'}
-            ];
-            
-            for (let i = 0; i < 5; i++) {
-                const cloud = document.createElement('div');
-                const style = cloudShapes[Math.floor(Math.random() * cloudShapes.length)];
-                Object.assign(cloud.style, {
-                    width: style.w + 'px',
-                    height: style.h + 'px',
-                    borderRadius: style.r,
-                    top: Math.random() * 80 + '%',
-                    animationDelay: Math.random() * 20 + 's'
-                });
-                cloud.className = 'cloud';
-                document.body.appendChild(cloud);
-            }
-        }
-
-        // Interactive Effects
         document.querySelectorAll('.social-links a').forEach(icon => {
             icon.addEventListener('click', (e) => {
                 const particles = document.createElement('div');
@@ -255,21 +193,6 @@
                 setTimeout(() => particles.remove(), 1000);
             });
         });
-
-        // Initial Setup
-        createLeaves();
-        createClouds();
-        
-        // Responsive Handler
-        window.addEventListener('resize', () => {
-            document.querySelectorAll('.leaf').forEach(leaf => leaf.remove());
-            createLeaves();
-        });
-
-        // Mobile Detection
-        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            document.documentElement.classList.add('mobile');
-        }
     </script>
 </body>
 </html>
