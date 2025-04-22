@@ -81,6 +81,11 @@
             margin: 20px 0;
         }
 
+        /* Thêm khoảng cách giữa icon và chữ */
+        .skills-container li i {
+            margin-right: 10px;
+        }
+
         .contact-info p {
             margin: 10px 0;
             line-height: 1.8;
@@ -91,6 +96,7 @@
             to { opacity: 1; }
         }
 
+        /* Điều chỉnh cho các kích thước màn hình */
         @media (max-width: 992px) {
             .container { max-width: 90%; padding: 25px; }
             .profile-img { width: 180px; height: 180px; }
@@ -114,6 +120,10 @@
             .container { padding: 15px; }
             h1 { font-size: 1.3rem; }
             .social-links a { font-size: 1.5em; }
+            /* Giảm khoảng cách trên màn hình rất nhỏ nếu cần */
+            .skills-container li i {
+                margin-right: 8px;
+            }
         }
 
         .running-pig {
@@ -153,22 +163,22 @@
             <div>
                 <h3>🛠 Skills</h3>
                 <ul>
-                    <li>Animal Husbandry and Veterinary Care</li>
-                    <li>Microsoft Office Proficiency</li>
-                    <li>Data Analysis</li>
-                    <li>Planning and Reporting</li>
+                    <li><i class="fas fa-paw"></i> Animal Husbandry and Veterinary Care</li>
+                    <li><i class="fas fa-laptop"></i> Microsoft Office Proficiency</li>
+                    <li><i class="fas fa-chart-line"></i> Data Analysis</li>
+                    <li><i class="fas fa-calendar-alt"></i> Planning and Reporting</li>
                 </ul>
             </div>
             
-             <div>
-    <h3>🤖 Interests</h3>
-    <ul>
-        <li>Cycling – 80%</li>
-        <li>Running – 70%</li>
-        <li>Listening to music – 60%</li>
-        <li>Enjoying solitude – 101%</li>
-    </ul>
-</div>
+            <div>
+                <h3>🤖 Interests</h3>
+                <ul>
+                    <li><i class="fas fa-bicycle"></i> Cycling – 80%</li>
+                    <li><i class="fas fa-running"></i> Running – 70%</li>
+                    <li><i class="fas fa-music"></i> Listening to music – 60%</li>
+                    <li><i class="fas fa-user"></i> Enjoying solitude – 101%</li>
+                </ul>
+            </div>
         </div>
 
         <div class="contact-info">
