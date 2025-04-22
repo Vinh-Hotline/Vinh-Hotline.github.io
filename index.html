@@ -4,19 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="Vinh Pig - Chuyên gia chăn nuôi heo, chia sẻ kiến thức và kinh nghiệm trong lĩnh vực chăn nuôi">
-    <meta http-equiv="Content-Security-Policy" 
-          content="default-src 'self'; 
-                   script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; 
-                   style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; 
-                   img-src 'self' github.com raw.githubusercontent.com; 
-                   font-src cdnjs.cloudflare.com;
-                   connect-src 'none';">
     <title>Vinh Pig</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <style>
         :root {
-            /* Light mode colors */
             --ghibli-green: #8da07d;
             --ghibli-blue: #a3c6d9;
             --ghibli-cream: #f5f1e3;
@@ -56,7 +48,6 @@
             position: relative;
         }
 
-        /* Theme Toggle Button */
         #theme-toggle {
             position: fixed;
             top: 20px;
@@ -76,7 +67,6 @@
             transform: scale(1.1);
         }
 
-        /* Profile Image with Loading */
         .profile-img-container {
             position: relative;
             width: 200px;
@@ -91,34 +81,20 @@
             border: 5px solid var(--ghibli-green);
             display: block;
             object-fit: cover;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
         }
 
-        .profile-img.loaded {
-            opacity: 1;
+        .running-pig {
+            position: fixed;
+            bottom: 20px;
+            left: -100px; /* Changed from right to left */
+            font-size: 40px;
+            animation: run 7s linear infinite; /* Reduced time from 15s to 10s */
+            opacity: 1; /* Changed from 0.7 to 1 */
         }
 
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-
-        .loading-spinner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            border: 4px solid var(--ghibli-cream);
-            border-top: 4px solid var(--ghibli-green);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes run {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 100px)); }
         }
 
         h1 {
@@ -175,20 +151,6 @@
             to { opacity: 1; }
         }
 
-        .running-pig {
-            position: fixed;
-            bottom: 20px;
-            right: -100px;
-            font-size: 40px;
-            animation: run 15s linear infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes run {
-            from { transform: translateX(0); }
-            to { transform: translateX(calc(100vw + 200px)); }
-        }
-
         /* Responsive Design */
         @media (max-width: 992px) {
             .container { max-width: 90%; padding: 25px; }
@@ -225,11 +187,9 @@
 
     <div class="container">
         <div class="profile-img-container">
-            <div class="loading-spinner"></div>
             <img src="https://github.com/Vinh-Hotline/Vinh-Hotline.github.io/raw/main/images/Imagine_10114825312985827" 
                  alt="Vinh Pig - Chuyên gia chăn nuôi heo" 
-                 class="profile-img"
-                 onload="this.classList.add('loaded')">
+                 class="profile-img">
         </div>
 
         <h1>🐷 Vinh Pig (Đoàn Vinh)</h1>
@@ -268,7 +228,7 @@
         </div>
 
         <h2>📌 Về tôi</h2>
-        <p>Xin chào! tôi là Vinh – một người luôn nghiêm túc với nghề và không ngừng học hỏi để nâng cao kỹ năng. Với niềm đam mê và sự tận tâm trong l[...]</p>
+        <p>Xin chào! tôi là Vinh – một người luôn nghiêm túc với nghề và không ngừng học hỏi để nâng cao kỹ năng. Với niềm đam mê và sự tận tâm trong công việc.Hai con thằng lằn con đùa nhau đua cắn nhau đứt đuôi, cha thằn lằn buồn hiu gọi chúng đến mắng đánh cho... Đuôi anh mày thật to sao mày cắn đứt đuôi anh mày🥵</p>
 
         <div class="skills-container">
             <div>
@@ -293,7 +253,7 @@
         </div>
 
         <div class="contact-info">
-            <h2>📞 Liên Hệ</h2>
+            <h2>📞 Liên hệ</h2>
             <p>
                 <i class="fas fa-comment-dots"></i> Zalo: 08 678 246 06<br>
                 <i class="fas fa-map-marker-alt"></i> Địa chỉ: Ea Tóh, Krông Năng, Đắk Lắk, Việt Nam
@@ -323,19 +283,6 @@
             document.body.dataset.theme = savedTheme;
             updateThemeIcon(savedTheme === 'dark');
         }
-
-        // Social links sparkle effect
-        document.querySelectorAll('.social-links a').forEach(icon => {
-            icon.addEventListener('click', (e) => {
-                const particles = document.createElement('div');
-                particles.style.position = 'fixed';
-                particles.style.left = e.clientX + 'px';
-                particles.style.top = e.clientY + 'px';
-                particles.innerHTML = '✨✨✨';
-                document.body.appendChild(particles);
-                setTimeout(() => particles.remove(), 1000);
-            });
-        });
     </script>
 </body>
 </html>
