@@ -1,5 +1,8 @@
 // Tạo lá rơi
 function createLeaves() {
+    const existingLeaves = document.querySelectorAll('.leaf');
+    if (existingLeaves.length > 0) return; // Tránh tạo lại nếu đã có lá
+
     for (let i = 0; i < 15; i++) {
         const leaf = document.createElement('div');
         leaf.className = 'leaf';
@@ -12,12 +15,15 @@ function createLeaves() {
 
 // Tạo mây
 function createClouds() {
+    const existingClouds = document.querySelectorAll('.cloud');
+    if (existingClouds.length > 0) return; // Tránh tạo lại nếu đã có mây
+
     const cloudShapes = [
-        {w: 120, h: 40, r: '30px'},
-        {w: 80, h: 30, r: '20px'},
-        {w: 150, h: 50, r: '40px'}
+        { w: 120, h: 40, r: '30px' },
+        { w: 80, h: 30, r: '20px' },
+        { w: 150, h: 50, r: '40px' },
     ];
-    
+
     for (let i = 0; i < 5; i++) {
         const cloud = document.createElement('div');
         const style = cloudShapes[Math.floor(Math.random() * cloudShapes.length)];
@@ -26,7 +32,7 @@ function createClouds() {
             height: style.h + 'px',
             borderRadius: style.r,
             top: Math.random() * 80 + '%',
-            animationDelay: Math.random() * 20 + 's'
+            animationDelay: Math.random() * 20 + 's',
         });
         cloud.className = 'cloud';
         document.body.appendChild(cloud);
