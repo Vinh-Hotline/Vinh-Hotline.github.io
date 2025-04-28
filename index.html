@@ -3,338 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="Vinh Pig-CV">
-    <title>Vinh Pig</title>
+    <meta name="description" content="Hồ sơ cá nhân của Vinh Pig">
+    <title>Vinh Pig - Hồ Sơ Cá Nhân</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <style>
+        /* Root Variables */
         :root {
-            --ghibli-green: #8da07d;
-            --ghibli-blue: #a3c6d9;
-            --ghibli-cream: #f5f1e3;
-            --ghibli-orange: #e6b89c;
-            --ghibli-gold: #ffd700;
-            --background-color: linear-gradient(45deg, var(--ghibli-cream), var(--ghibli-blue));
-            --text-color: #2c3e50;
-            --container-bg: rgba(255, 255, 255, 0.9);
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-light: #f8f9fa;
+            --background-dark: #343a40;
+            --text-light: #ffffff;
+            --text-dark: #000000;
+            --container-bg: #ffffff;
+            --container-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        [data-theme="dark"] {
-            --background-color: linear-gradient(45deg, #2c3e50, #3498db);
-            --text-color: #ecf0f1;
-            --container-bg: rgba(44, 62, 80, 0.9);
-            --ghibli-green: #a1c4a1;
-            --ghibli-gold: #ffd700;
-        }
-
+        /* Body Styling */
         body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            line-height: 1.6;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 20px;
-            background: var(--background-color);
-            color: var(--text-color);
-            overflow-x: hidden;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
+        /* Header Styling */
+        header {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        /* Container Styling */
         .container {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 1100px;
+            margin: 20px auto;
             background: var(--container-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 0.8s ease-out;
-            position: relative;
+            box-shadow: var(--container-shadow);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 20px;
         }
 
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--container-bg);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        #theme-toggle:hover {
-            transform: scale(1.1);
-        }
-
+        /* Profile Image */
         .profile-img-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 20px;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .profile-img {
-            width: 100%;
-            height: 100%;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            border: 5px solid var(--ghibli-green);
-            display: block;
-            object-fit: cover;
+            border: 4px solid var(--primary-color);
         }
 
-        .running-pig {
-            position: fixed;
-            bottom: 20px;
-            left: -100px;
-            font-size: 40px;
-            animation: run 7s linear infinite;
-            opacity: 1;
+        /* Section Headings */
+        section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
 
-        @keyframes run {
-            from { transform: translateX(0); }
-            to { transform: translateX(calc(100vw + 100px)); }
-        }
-
-        h1 {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 2rem;
-        }
-
-        .social-links {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .social-links a {
-            font-size: 2em;
-            margin: 0 10px;
-            color: var(--ghibli-green);
-            transition: transform 0.3s ease;
-            display: inline-block;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-5px);
-            color: var(--ghibli-gold);
-        }
-
+        /* Skills Section */
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin: 20px 0;
         }
 
-        .skills-container li i {
-            margin-right: 10px;
+        .skills-container ul {
+            list-style: none;
+            padding: 0;
         }
 
         .skills-container li {
+            background: var(--background-light);
+            border-left: 5px solid var(--primary-color);
+            padding: 10px;
             margin-bottom: 10px;
+            border-radius: 5px;
         }
 
-        .contact-info p {
-            margin: 10px 0;
-            line-height: 1.8;
+        /* Contact Info */
+        .contact-info {
+            text-align: center;
         }
 
         .contact-info a {
-            color: var(--text-color);
+            color: var(--primary-color);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: bold;
         }
 
         .contact-info a:hover {
-            color: var(--ghibli-gold);
+            text-decoration: underline;
         }
 
-        .current-time {
+        /* Footer */
+        footer {
             text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
+            padding: 10px 0;
+            background: var(--secondary-color);
+            color: var(--text-light);
         }
 
-        #current-time-display {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: var(--ghibli-green);
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .container { max-width: 90%; padding: 25px; }
-            .profile-img-container { width: 180px; height: 180px; }
-            h1 { font-size: 1.8rem; }
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 15px; }
-            .container { padding: 20px; }
-            .skills-container { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 576px) {
-            .profile-img-container { width: 150px; height: 150px; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.3rem; }
-            .social-links a { font-size: 1.8em; }
-        }
-
-        @media (max-width: 400px) {
-            .container { padding: 15px; }
-            h1 { font-size: 1.3rem; }
-            .social-links a { font-size: 1.5em; }
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <button id="theme-toggle" aria-label="Toggle dark mode">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <div class="running-pig">🐷</div>
+    <header>
+        <h1>Hồ Sơ Cá Nhân - Vinh Pig</h1>
+    </header>
 
     <div class="container">
+        <!-- Profile Section -->
         <div class="profile-img-container">
-            <img src="https://github.com/Vinh-Hotline/Vinh-Hotline.github.io/raw/main/images/Imagine_10114825312985827" 
-                 alt="Vinh Pig - Chuyên gia chăn nuôi heo" 
-                 class="profile-img">
+            <img src="images/avatar.jpg" alt="Vinh Pig" class="profile-img">
         </div>
+        <section>
+            <h2>Giới Thiệu</h2>
+            <p>Xin chào! Tôi là Vinh Pig, một người luôn nghiêm túc trong công việc và không ngừng học hỏi để phát triển bản thân. Đam mê của tôi là giúp đỡ người khác và phát triển các kỹ năng trong lĩnh vực chăn nuôi và công nghệ.</p>
+        </section>
 
-        <h1>🐷 Vinh Pig (Đoàn Vinh)</h1>
-        
-        <div class="social-links">
-            <a href="https://www.facebook.com/share/15DfdrSPmw/?mibextid=qi2Omg" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://github.com/Vinh-Hotline" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://open.spotify.com/user/31cqtlxglww2gkwsfhhsks27mn3e" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="Spotify">
-                <i class="fab fa-spotify"></i>
-            </a>
-            <a href="https://www.reddit.com/u/PigConnect" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="Reddit">
-                <i class="fab fa-reddit"></i>
-            </a>
-            <a href="http://www.x.com/babodiad" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="X (Twitter)">
-                <i class="fab fa-twitter"></i>
-            </a>
-        </div>
-
-        <h2>📌 Về tôi</h2>
-        <p>Xin chào! tôi là Vinh – một người luôn nghiêm túc với nghề và không ngừng học hỏi để nâng cao kỹ năng. Với niềm đam mê và sự tận tâm trong công việc, tôi tin rằng chúng ta sẽ cùng nhau tạo ra những giá trị mới, thay đổi mới...</p>
-
-        <div class="skills-container">
-            <div>
-                <h3>🛠 Skills</h3>
+        <!-- Skills Section -->
+        <section>
+            <h2>Kỹ Năng</h2>
+            <div class="skills-container">
                 <ul>
-                    <li><i class="fas fa-paw"></i> Animal Husbandry and Veterinary Care</li>
-                    <li><i class="fas fa-laptop"></i> Microsoft Office Proficiency</li>
-                    <li><i class="fas fa-chart-line"></i> Data Analysis</li>
-                    <li><i class="fas fa-calendar-alt"></i> Planning and Reporting</li>
+                    <li><i class="fas fa-paw"></i> Chăn nuôi và Thú y</li>
+                    <li><i class="fas fa-laptop"></i> Thành thạo Microsoft Office</li>
+                    <li><i class="fas fa-chart-line"></i> Phân tích dữ liệu</li>
+                    <li><i class="fas fa-calendar-alt"></i> Lập kế hoạch và báo cáo</li>
+                </ul>
+                <ul>
+                    <li><i class="fas fa-bicycle"></i> Đạp xe</li>
+                    <li><i class="fas fa-running"></i> Chạy bộ</li>
+                    <li><i class="fas fa-music"></i> Nghe nhạc</li>
+                    <li><i class="fas fa-user"></i> Tận hưởng sự yên tĩnh</li>
                 </ul>
             </div>
-            
-            <div>
-                <h3>🤖 Interests</h3>
-                <ul>
-                    <li><i class="fas fa-bicycle"></i> Cycling – 80%</li>
-                    <li><i class="fas fa-running"></i> Running – 70%</li>
-                    <li><i class="fas fa-music"></i> Listening to music – 60%</li>
-                    <li><i class="fas fa-user"></i> Enjoying solitude – 101%</li>
-                </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section>
+            <h2>Liên Hệ</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> <a href="tel:+84867824606">+84 08 678 246 06</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:vinh@example.com">vinh@example.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Đắk Lắk, Việt Nam</p>
             </div>
-        </div>
-
-        <div class="contact-info">
-            <h2>📞 Liên hệ</h2>
-            <p>
-                <i class="fas fa-phone"></i> <a href="tel:+84867824606">+84 08 678 246 06</a><br>
-                <i class="fas fa-map-marker-alt"></i> <a href="https://maps.google.com/?q=28RM%2BJ4X+Kr%C3%B4ng+N%C4%83ng%2C+%C4%90%E1%BA%AFk+L%E1%BA%AFk" target="_blank">28RM+J4X Krông Năng, Đắk Lắk</a>
-            </p>
-        </div>
-
-        <div class="current-time">
-            <h2>⏰ Thời gian hiện tại</h2>
-            <p id="current-time-display"></p>
-        </div>
+        </section>
     </div>
 
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const moonIcon = themeToggle.querySelector('i');
-
-        function updateThemeIcon(isDark) {
-            moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const isDark = document.body.dataset.theme === 'dark';
-            document.body.dataset.theme = isDark ? '' : 'dark';
-            localStorage.setItem('theme', document.body.dataset.theme);
-            updateThemeIcon(!isDark);
-        });
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.body.dataset.theme = savedTheme;
-            updateThemeIcon(savedTheme === 'dark');
-        }
-
-        // Time Display
-        function updateTime() {
-            const timeDisplay = document.getElementById('current-time-display');
-            const options = {
-                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-            };
-            
-            const now = new Date();
-            timeDisplay.textContent = now.toLocaleString('vi-VN', options) + 
-                '\nMúi giờ: ' + Intl.DateTimeFormat().resolvedOptions().timeZone;
-        }
-
-        // Update time every second
-        updateTime();
-        setInterval(updateTime, 1000);
-    </script>
+    <footer>
+        <p>&copy; 2025 Vinh Pig. <a href="https://github.com/Vinh-Hotline" target="_blank">GitHub</a></p>
+    </footer>
 </body>
 </html>
